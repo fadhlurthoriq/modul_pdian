@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_chat/auth/auth_service.dart';
 import 'package:project_chat/components/id.textfield.dart';
 import 'package:project_chat/components/tombol/tombol.dart';
 
@@ -11,9 +12,29 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _pwControlller =
       TextEditingController();
       
-        get login => null;
+        // get login => null;
         
         final void Function()? onTap;
+
+  void login(BuildContext context) async{
+    final authService = AuthService();
+
+    try{
+      await authService.signInWithEmailPassword(
+        _emailController.text, 
+        _pwControlller.text
+      );
+    }
+    catch(e){
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        )
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +80,7 @@ class LoginPage extends StatelessWidget {
 
             Tombol(
               text: "Login", 
-              onTap: login,
+              onTap: () => login(context),
             ),
 
             const SizedBox(height: 15),
