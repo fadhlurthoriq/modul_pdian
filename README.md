@@ -60,7 +60,7 @@ flutter doctor
 ## Cara Clone & Menjalankan Project
 1. Clone Repository
 ```bash
-git clone https://github.com/fadhlurthoriq/modul_pdian,git
+git clone https://github.com/fadhlurthoriq/modul_pdian
 ```
     Masuk ke folder project
 ```bash
